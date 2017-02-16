@@ -1,0 +1,22 @@
+<template>
+  <div>
+    <image class="thumbnail" src="https://img.alicdn.com/tps/TB15vyaLpXXXXXXXFXXXXXXXXXX-198-46.png"></image>
+    <text class="title" onclick="onClickTitle">Hello Weex</text>
+  </div>
+</template>
+
+<style>
+  .title { color: red; }
+  .thumbnail { width: 100; height: 30; }
+</style>
+
+<script>
+  module.exports = {
+    methods: {
+      onClickTitle: function (e) {
+        console.log(e);
+        alert('title clicked.');
+      }
+    }
+  }
+</script>

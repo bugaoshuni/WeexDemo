@@ -47,13 +47,15 @@
     //首先在ViewController里的render放初始化WXSDKInstance，因为render会支持实时刷新，所以每次都需要先销毁这个实例。
     [_instance destroyInstance];
     _instance = [[WXSDKInstance alloc] init];
+    //instance.viewController: 一般情况下，iOS的运行环境都是基于不同viewController的，很多底层操作需要知晓当前所处的viewController对象，因此需要向instance知会当前的viewController。
     _instance.viewController = self;
+    //instance.frame: 根据weex对instance的设计规范，需要渲染中知道最外层body的位置和尺寸。这个frame值的设置，跟最终在回调中获取的view.frame一致。
     _instance.frame = CGRectMake(self.view.frame.size.width-width, 500, width, self.view.frame.size.height);
     
     __weak typeof(self) weakSelf = self;
     
     _instance.onCreate = ^(UIView *view) {
-        //onCreate:根视图rootView创建的时候
+        //onCreate:weex页面最外层body渲染完成后的回调。在此回调中，weex渲染所得的rootView已确定，可以输出并添加到父容器中。
         [weakSelf.weexView removeFromSuperview];
         weakSelf.weexView = view;
         [weakSelf.view addSubview:weakSelf.weexView];
@@ -65,7 +67,7 @@
     };
    
     self.instance.renderFinish = ^(UIView *view){
-        //处理页面渲染完成
+        //renderFinish：所有weex的页面元素都已渲染完毕，整个渲染过程至此结束。
         NSLog(@"renderFinish:%@",view);
 //        [weakSelf.instance fireGlobalEvent:@"geolocation" params:@{@"key":@"value"}];
     };
@@ -76,7 +78,7 @@
 }
 
 - (void)dealloc{
-    //destroyInstanc 销毁 weex 实例，不然会内存溢出
+    //destroyInstanc：销毁 weex 实例，不然会内存溢出
     [self.instance destroyInstance];
 }
 

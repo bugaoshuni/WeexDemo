@@ -10,6 +10,7 @@
 #import <WeexSDK/WeexSDK.h>
 #import "WXEventModule.h"
 #import "ViewController.h"
+#import "WeexImageDownloader.h"
 
 @interface AppDelegate ()
 
@@ -25,10 +26,13 @@
     //设置打印日志的类型，有只打印错误日志、警告日志 等，我们这里选择打印全部日志。
     [WXLog setLogLevel: WXLogLevelAll];
     
-    //初始化SDK环境
+    //初始化SDK环境,最新版本的方法名改为：initSDKEnviroment
     [WXSDKEngine initSDKEnvironment];
     //registerModule是注册模块，如果没有，你点击weex的渲染的view中的按钮将找不到事件。
     [WXSDKEngine registerModule:@"event" withClass:[WXEventModule class]];
+    
+    //注册Handler
+    [WXSDKEngine registerHandler:[WeexImageDownloader new] withProtocol:@protocol(WXImgLoaderProtocol)];
 
     return YES;
 }

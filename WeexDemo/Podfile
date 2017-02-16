@@ -4,6 +4,7 @@ platform :ios, '7.0'
 
 def common
     pod 'WeexSDK', :path=>'./sdk/'
+    pod 'SDWebImage'
 end
 
 target 'WeexDemo' do
