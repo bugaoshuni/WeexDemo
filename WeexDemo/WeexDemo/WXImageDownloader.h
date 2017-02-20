@@ -1,5 +1,5 @@
 //
-//  WeexImageDownloader.h
+//  WXImageDownloader.h
 //  WeexDemo
 //
 //  Created by hjc on 2017/2/16.
@@ -8,6 +8,6 @@
 
 #import <WeexSDK/WeexSDK.h>
 
-@interface WeexImageDownloader : NSObject <WXImgLoaderProtocol>
+@interface WXImageDownloader : NSObject <WXImgLoaderProtocol>
 
 @end

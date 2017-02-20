@@ -20,8 +20,8 @@ WX_EXPORT_METHOD(@selector(openURL:))
 {
     NSString *newURL = url;
     //注意。真机和模拟器的目录结构不同，所以替换的字符串就不同，这里自己简单的进行替换
-//    newURL = [newURL stringByReplacingOccurrencesOfString:@"//Users/examples/build/" withString:@"/bundlejs/"];//模拟器的目录结果
-     newURL = [newURL stringByReplacingOccurrencesOfString:@"//var/examples/build/" withString:@"/bundlejs/"]; //真机的目录结构
+//    newURL = [newURL stringByReplacingOccurrencesOfString:@"//Users/WeexDemo/build/" withString:@"/bundlejs/"];//模拟器的目录结果
+     newURL = [newURL stringByReplacingOccurrencesOfString:@"//var/WeexDemo/build/" withString:@"/bundlejs/"]; //真机的目录结构
     
     newURL = [[[NSBundle mainBundle] bundlePath] stringByAppendingString:newURL];;
     UIViewController *controller = [[ViewController alloc] init];

@@ -10,7 +10,7 @@
 #import <WeexSDK/WeexSDK.h>
 #import "WXEventModule.h"
 #import "ViewController.h"
-#import "WeexImageDownloader.h"
+#import "WXImageDownloader.h"
 
 @interface AppDelegate ()
 
@@ -32,7 +32,7 @@
     [WXSDKEngine registerModule:@"event" withClass:[WXEventModule class]];
     
     //注册Handler
-    [WXSDKEngine registerHandler:[WeexImageDownloader new] withProtocol:@protocol(WXImgLoaderProtocol)];
+    [WXSDKEngine registerHandler:[WXImageDownloader new] withProtocol:@protocol(WXImgLoaderProtocol)];
 
     return YES;
 }
